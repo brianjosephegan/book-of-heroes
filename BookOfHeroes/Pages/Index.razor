@@ -3,6 +3,15 @@
 @using BookOfHeroes.Data
 @inject HeroService HeroService
 
+<ul>
+    @foreach (var hero in heroes)
+    {
+        <li>
+            <span class="badge">@hero.Id</span> @hero.Name
+        </li>
+    }
+</ul>
+
 <h3>@hero.Name.ToUpper() Details</h3>
 <div><span>id: </span>@hero.Id</div>
 <div>
@@ -11,13 +20,13 @@
 </div>
 
 @code {
-    private Data.Hero hero = new Data.Hero() { Id = 1, Name = "Windstorm" };
-
     private Hero[] heroes;
+    private Hero hero;
 
     protected override async Task OnInitializedAsync()
     {
         heroes = await HeroService.GetHeroesAsync();
+        hero = heroes.First();
     }
 }
 
