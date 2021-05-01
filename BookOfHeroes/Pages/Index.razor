@@ -6,7 +6,7 @@
 <ul>
     @foreach (var hero in heroes)
     {
-        <li>
+        <li @onclick="() => SelectHero(hero)">
             <span class="badge">@hero.Id</span> @hero.Name
         </li>
     }
@@ -28,5 +28,7 @@
         heroes = await HeroService.GetHeroesAsync();
         hero = heroes.First();
     }
+
+    private void SelectHero(Hero hero) => this.hero = hero;
 }
 
