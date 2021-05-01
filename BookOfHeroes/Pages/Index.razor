@@ -3,7 +3,9 @@
 @using BookOfHeroes.Data
 @inject HeroService HeroService
 
-<ul>
+<h2>The Heroes</h2>
+
+<ul class="heroes">
     @foreach (var hero in heroes)
     {
         <li @onclick="() => SelectHero(hero)">
@@ -12,12 +14,7 @@
     }
 </ul>
 
-<h3>@hero.Name.ToUpper() Details</h3>
-<div><span>id: </span>@hero.Id</div>
-<div>
-    <label for="name">Hero name: </label>
-    <input id="name" placeholder="name" @bind="@hero.Name">
-</div>
+<HeroDetail hero="this.hero"></HeroDetail>
 
 @code {
     private Hero[] heroes;
