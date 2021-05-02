@@ -7,6 +7,13 @@ namespace BookOfHeroes.Data
 {
     public class HeroService
     {
+        private readonly MessageService messageService;
+
+        public HeroService(MessageService messageService)
+        {
+            this.messageService = messageService;
+        }
+
         private static readonly Hero[] heroes = new Hero[]
         {
             new Hero() { Id = 11, Name = "Jaina Proudmoore" },
@@ -21,6 +28,10 @@ namespace BookOfHeroes.Data
             new Hero() { Id = 20, Name = "Illidan Stormrage" },
         };
 
-        public Task<Hero[]> GetHeroesAsync() => Task.FromResult(heroes);
+        public Task<Hero[]> GetHeroesAsync()
+        {
+            messageService.Add("HeroService: fetched heroes");
+            return Task.FromResult(heroes);
+        }
     }
 }

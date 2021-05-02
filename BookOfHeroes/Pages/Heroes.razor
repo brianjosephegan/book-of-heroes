@@ -2,6 +2,7 @@
 
 @using BookOfHeroes.Data
 @inject HeroService HeroService
+@inject MessageService MessageService
 
 <h2>The Heroes</h2>
 
@@ -16,6 +17,8 @@
 
 <HeroDetail hero="this.hero"></HeroDetail>
 
+<Messages></Messages>
+
 @code {
     private Hero[] heroes;
     private Hero hero;
@@ -26,6 +29,10 @@
         hero = heroes.First();
     }
 
-    private void SelectHero(Hero hero) => this.hero = hero;
+    private void SelectHero(Hero hero)
+    {
+        this.hero = hero;
+        MessageService.Add($"HeroesComponent: Selected hero id={hero.Id}");
+    }
 }
 

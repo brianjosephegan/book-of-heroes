@@ -1,0 +1,30 @@
+﻿@using BookOfHeroes.Data
+@inject MessageService MessageService
+
+@if (messageService.Messages.Any())
+{
+    <h3>Messages</h3>
+
+    <button class="clear" @onclick="() => messageService.Clear()">Clear messages</button>
+
+    @foreach (var message in messageService.Messages)
+    {
+        <p>@message</p>
+    }
+}
+
+@code {
+    [Inject]
+    private MessageService messageService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        messageService.MessagesUpdated += MessageService_OnMessagesUpdated;
+        await Task.FromResult(0);
+    }
+
+    private void MessageService_OnMessagesUpdated(object sender, EventArgs eventArgs)
+    {
+        InvokeAsync(() => StateHasChanged());
+    }
+}
