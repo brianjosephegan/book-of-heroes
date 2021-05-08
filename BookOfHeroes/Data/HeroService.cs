@@ -28,6 +28,12 @@ namespace BookOfHeroes.Data
             new Hero() { Id = 20, Name = "Illidan Stormrage" },
         };
 
+        public Task<Hero> GetHeroAsync(int id)
+        {
+            messageService.Add($"HeroService: fetched hero id={id}");
+            return Task.FromResult(heroes.Single(h => h.Id == id));
+        }
+
         public Task<List<Hero>> GetHeroesAsync()
         {
             messageService.Add("HeroService: fetched heroes");

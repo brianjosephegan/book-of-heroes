@@ -9,8 +9,10 @@
 <ul class="heroes">
     @foreach (var hero in heroes)
     {
-        <li @onclick="() => SelectHero(hero)">
-            <span class="badge">@hero.Id</span> @hero.Name
+        <li>
+            <a href="/herodetails/@hero.Id">
+                <span class="badge">@hero.Id</span> @hero.Name
+            </a>
         </li>
     }
 </ul>
@@ -19,18 +21,10 @@
 
 @code {
     private List<Hero> heroes;
-    private Hero hero;
 
     protected override async Task OnInitializedAsync()
     {
         heroes = await HeroService.GetHeroesAsync();
-        hero = heroes.First();
-    }
-
-    private void SelectHero(Hero hero)
-    {
-        this.hero = hero;
-        MessageService.Add($"HeroesComponent: Selected hero id={hero.Id}");
     }
 }
 
