@@ -14,7 +14,7 @@ namespace BookOfHeroes.Data
             this.messageService = messageService;
         }
 
-        private static readonly Hero[] heroes = new Hero[]
+        private static readonly List<Hero> heroes = new List<Hero>()
         {
             new Hero() { Id = 11, Name = "Jaina Proudmoore" },
             new Hero() { Id = 12, Name = "Rexxar" },
@@ -28,7 +28,7 @@ namespace BookOfHeroes.Data
             new Hero() { Id = 20, Name = "Illidan Stormrage" },
         };
 
-        public Task<Hero[]> GetHeroesAsync()
+        public Task<List<Hero>> GetHeroesAsync()
         {
             messageService.Add("HeroService: fetched heroes");
             return Task.FromResult(heroes);

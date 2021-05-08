@@ -1,0 +1,23 @@
+﻿@page "/dashboard"
+
+@using BookOfHeroes.Data
+@inject HeroService HeroService
+
+<h2>Top Heroes</h2>
+
+<div>
+    @foreach (var hero in heroes)
+    {
+        <a href="/heroes">@hero.Name</a>
+    }
+</div>
+
+@code {
+    private List<Hero> heroes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        heroes = await HeroService.GetHeroesAsync();
+        heroes = heroes.Take(5).ToList();
+    }
+}

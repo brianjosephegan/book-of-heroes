@@ -1,10 +1,10 @@
-﻿@page "/"
+﻿@page "/heroes"
 
 @using BookOfHeroes.Data
 @inject HeroService HeroService
 @inject MessageService MessageService
 
-<h2>The Heroes</h2>
+<h3>The Heroes</h3>
 
 <ul class="heroes">
     @foreach (var hero in heroes)
@@ -17,10 +17,8 @@
 
 <HeroDetail hero="this.hero"></HeroDetail>
 
-<Messages></Messages>
-
 @code {
-    private Hero[] heroes;
+    private List<Hero> heroes;
     private Hero hero;
 
     protected override async Task OnInitializedAsync()

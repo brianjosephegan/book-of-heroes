@@ -1,9 +1,18 @@
 ﻿@inherits LayoutComponentBase
 
+@using BookOfHeroes.Pages;
+
 <div class="main">
     <div class="content px-4">
         <h1>Book of Heroes</h1>
 
+        <nav>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/heroes">Heroes</a>
+        </nav>
+
         @Body
+
+        <Messages />
     </div>
 </div>
