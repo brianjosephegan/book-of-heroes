@@ -3,15 +3,12 @@
 @using BookOfHeroes.Data
 @inject HeroService HeroService
 
-@if (@hero != null)
-{
-    <h3>@hero.Name.ToUpper() Details</h3>
-    <div><span>id: </span>@hero.Id</div>
-    <div>
-        <label for="name">Hero name: </label>
-        <input id="name" placeholder="name" @bind="@hero.Name">
-    </div>
-}
+<h3>@hero.Name.ToUpper() Details</h3>
+<div><span>id: </span>@hero.Id</div>
+<div>
+    <label for="name">Hero name: </label>
+    <input id="name" placeholder="name" @bind="@hero.Name">
+</div>
 
 @code {
     [Parameter]
