@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BookOfHeroes.Data;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BookOfHeroes.Data;
+using MudBlazor.Services;
 
 namespace BookOfHeroes
 {
@@ -22,6 +18,7 @@ namespace BookOfHeroes
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddMudServices();
             services.AddSingleton<HeroService>();
             services.AddSingleton<MessageService>();
         }
