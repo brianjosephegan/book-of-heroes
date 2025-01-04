@@ -9,19 +9,19 @@ namespace BookOfHeroes.Data
     {
         public event EventHandler MessagesUpdated;
 
-        public List<string> Messages => messages;
+        public List<string> Messages => _messages;
 
-        private readonly List<string> messages = new List<string>();
+        private readonly List<string> _messages = [];
 
         public void Add(string messge)
         {
-            messages.Add(messge);
+            _messages.Add(messge);
             MessagesUpdated?.Invoke(this, new EventArgs());
         }
 
         public void Clear()
         {
-            messages.Clear();
+            _messages.Clear();
             MessagesUpdated?.Invoke(this, new EventArgs());
         }
     }
