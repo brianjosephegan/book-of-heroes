@@ -2,17 +2,16 @@
 
 @using BookOfHeroes.Data
 @inject HeroService HeroService
-@inject MessageService MessageService
 
-<h3>The Heroes</h3>
+<MudText Typo="Typo.h3">The Heroes</MudText>
 
 <ul class="heroes">
     @foreach (var hero in heroes)
     {
         <li>
-            <a href="/herodetails/@hero.Id">
-                <span class="badge">@hero.Id</span> @hero.Name
-            </a>
+            <MudBadge Content="@hero.Id" Origin="Origin.CenterRight" Overlap="false">
+                <MudButton Href="@($"/herodetails/{hero.Id}")"> @hero.Name</MudButton>
+            </MudBadge>
         </li>
     }
 </ul>

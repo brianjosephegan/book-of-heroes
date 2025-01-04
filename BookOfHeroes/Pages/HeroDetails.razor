@@ -3,12 +3,11 @@
 @using BookOfHeroes.Data
 @inject HeroService HeroService
 
-<h3>@hero.Name.ToUpper() Details</h3>
-<div><span>id: </span>@hero.Id</div>
-<div>
-    <label for="name">Hero name: </label>
-    <input id="name" placeholder="name" @bind="@hero.Name">
-</div>
+<MudText Typo="Typo.h3">@hero.Name.ToUpper() Details</MudText>
+<MudForm>
+    <MudTextField T="int" Label="Id" ReadOnly="true" @bind-Value="@hero.Id" />
+    <MudTextField T="string" Label="Name" @bind-Value="@hero.Name" />
+</MudForm>
 
 @code {
     [Parameter]

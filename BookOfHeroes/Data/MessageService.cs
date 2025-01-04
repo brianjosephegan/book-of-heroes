@@ -1,28 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookOfHeroes.Data
 {
     public class MessageService
     {
-        public event EventHandler MessagesUpdated;
+        public event EventHandler<string> MessagesUpdated;
 
-        public List<string> Messages => messages;
+        public List<string> Messages => _messages;
 
-        private readonly List<string> messages = new List<string>();
+        private readonly List<string> _messages = [];
 
         public void Add(string messge)
         {
-            messages.Add(messge);
-            MessagesUpdated?.Invoke(this, new EventArgs());
-        }
-
-        public void Clear()
-        {
-            messages.Clear();
-            MessagesUpdated?.Invoke(this, new EventArgs());
+            _messages.Add(messge);
+            MessagesUpdated?.Invoke(this, messge);
         }
     }
 }

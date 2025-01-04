@@ -1,18 +1,37 @@
 ﻿@inherits LayoutComponentBase
 
 @using BookOfHeroes.Pages;
+@using BookOfHeroes.Shared;
 
-<div class="main">
-    <div class="content px-4">
-        <h1>Book of Heroes</h1>
+<MudThemeProvider />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
-        <nav>
-            <a href="/dashboard">Dashboard</a>
-            <a href="/heroes">Heroes</a>
-        </nav>
+<MudLayout>
+    <MudAppBar>
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        Book Of Heroes
+    </MudAppBar>
+    <MudDrawer @bind-Open="@_drawerOpen">
+        <MudNavMenu>
+            <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
+            <MudNavLink Href="/heroes" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">Heroes</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
+    <Messages />
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+           @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
 
-        @Body
+@code {
+    bool _drawerOpen = true;
 
-        <Messages />
-    </div>
-</div>
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}
