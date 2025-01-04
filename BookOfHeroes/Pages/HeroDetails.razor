@@ -4,11 +4,10 @@
 @inject HeroService HeroService
 
 <MudText Typo="Typo.h3">@hero.Name.ToUpper() Details</MudText>
-<div><span>id: </span>@hero.Id</div>
-<div>
-    <label for="name">Hero name: </label>
-    <input id="name" placeholder="name" @bind="@hero.Name">
-</div>
+<MudForm>
+    <MudTextField T="int" Label="Id" ReadOnly="true" @bind-Value="@hero.Id" />
+    <MudTextField T="string" Label="Name" @bind-Value="@hero.Name" />
+</MudForm>
 
 @code {
     [Parameter]
