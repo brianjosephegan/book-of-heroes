@@ -6,12 +6,10 @@
 
 <h2>Top Heroes</h2>
 
-<div class="heroes-menu">
-    @foreach (var hero in heroes)
-    {
-        <a href="/herodetails/@hero.Id">@hero.Name</a>
-    }
-</div>
+@foreach (var hero in heroes)
+{
+    <MudButton Href="@($"/herodetails/{hero.Id}")">@hero.Name</MudButton>
+}
 
 @code {
     private List<Hero> heroes;
