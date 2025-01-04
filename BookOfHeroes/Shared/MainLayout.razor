@@ -19,8 +19,11 @@
             <MudNavLink Href="/heroes" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">Heroes</MudNavLink>
         </MudNavMenu>
     </MudDrawer>
+    <Messages />
     <MudMainContent>
-        @Body
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+           @Body
+        </MudContainer>
     </MudMainContent>
 </MudLayout>
 

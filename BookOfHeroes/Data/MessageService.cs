@@ -5,7 +5,7 @@ namespace BookOfHeroes.Data
 {
     public class MessageService
     {
-        public event EventHandler MessagesUpdated;
+        public event EventHandler<string> MessagesUpdated;
 
         public List<string> Messages => _messages;
 
@@ -14,13 +14,7 @@ namespace BookOfHeroes.Data
         public void Add(string messge)
         {
             _messages.Add(messge);
-            MessagesUpdated?.Invoke(this, new EventArgs());
-        }
-
-        public void Clear()
-        {
-            _messages.Clear();
-            MessagesUpdated?.Invoke(this, new EventArgs());
+            MessagesUpdated?.Invoke(this, messge);
         }
     }
 }

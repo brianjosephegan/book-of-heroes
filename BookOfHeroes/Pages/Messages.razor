@@ -1,27 +1,15 @@
 ﻿@using BookOfHeroes.Data
 @inject MessageService MessageService
-
-@if (MessageService.Messages.Any())
-{
-    <h3>Messages</h3>
-
-    <button class="clear" @onclick="() => MessageService.Clear()">Clear messages</button>
-
-    @foreach (var message in MessageService.Messages)
-    {
-        <p>@message</p>
-    }
-}
+@inject ISnackbar Snackbar
 
 @code {
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         MessageService.MessagesUpdated += MessageService_OnMessagesUpdated;
-        await Task.FromResult(0);
     }
 
-    private void MessageService_OnMessagesUpdated(object sender, EventArgs eventArgs)
+    private void MessageService_OnMessagesUpdated(object sender, string message)
     {
-        InvokeAsync(() => StateHasChanged());
+        Snackbar.Add(message);
     }
 }
